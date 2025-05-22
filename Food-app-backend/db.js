@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const mongoURI = 'mongodb+srv://batjivesh:hOQer40UkOJW3t2l@master-it-db.0g2fkt0.mongodb.net/?retryWrites=true&w=majority&appName=Master-it-DB'
+const mongoURI = ''
 module.exports = function (callback) {
     mongoose.connect(mongoURI, { useNewUrlParser: true }, async (err, result) => {
         // mongoDbClient.connect(mongoURI, { useNewUrlParser: true }, async(err, result) => {
