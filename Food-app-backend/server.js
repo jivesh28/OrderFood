@@ -1,7 +1,12 @@
 const express = require('express');
 const connectDB = require('./db');
 const app = express();
-const port = 5000;
+const port = 5050;
+const cors = require("cors");
+
+app.use(cors({
+  origin: "http://localhost:3000"
+}));
 
 connectDB()
   .then(({ foodItems, categories }) => {
@@ -11,15 +16,6 @@ connectDB()
   .catch(err => {
     console.error("Failed to load data from DB:", err);
   });
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 app.use(express.json());
 

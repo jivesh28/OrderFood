@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import Navbar from '../components/Navbar';
 export default function Signup() {
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "", geolocation: "" })
   let [address, setAddress] = useState("");
@@ -21,7 +20,7 @@ export default function Signup() {
     // console.log(latlong)
     let [lat, long] = latlong
     console.log(lat, long)
-    const response = await fetch("http://localhost:5000/api/auth/getlocation", {
+    const response = await fetch("http://localhost:5050/api/auth/getlocation", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -37,14 +36,14 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/createuser", {
+    const response = await fetch("http://localhost:5050/api/auth/createuser", {
       // credentials: 'include',
       // Origin:"http://localhost:3000/login",
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password, location: credentials.geolocation })
+      body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password, location: address })
 
     });
     const json = await response.json()
@@ -67,7 +66,6 @@ export default function Signup() {
   return (
     <div style={{ backgroundImage: 'url("https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', backgroundSize: 'cover',height: '100vh' }}>
       <div>
-      <Navbar />
       </div>
 
         <div className='container' >
