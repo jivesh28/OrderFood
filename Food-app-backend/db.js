@@ -1,25 +1,27 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const mongoURI = ''
-module.exports = function (callback) {
-    mongoose.connect(mongoURI, { useNewUrlParser: true }, async (err, result) => {
-        // mongoDbClient.connect(mongoURI, { useNewUrlParser: true }, async(err, result) => {
-        if (err) console.log("---" + err) 
-        else {
-            // var database =
-            console.log("connected to mongo")
-            const foodCollection = await mongoose.connection.db.collection("food_items");
-            foodCollection.find({}).toArray(async function (err, data) {
-                const categoryCollection = await mongoose.connection.db.collection("Categories");
-                categoryCollection.find({}).toArray(async function (err, Catdata) {
-                    callback(err, data, Catdata);
+const mongoURI = process.env.MONGO_URI || ''; // Add your Mongo URI here
 
-                })
-            });
-            // listCollections({name: 'food_items'}).toArray(function (err, database) {
-            // });
-            //     module.exports.Collection = database;
-            // });
-        }
-    })
-};
+async function connectDB() {
+  try {
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log('Connected to MongoDB');
+
+    const foodCollection = mongoose.connection.db.collection('food_items');
+    const categoryCollection = mongoose.connection.db.collection('Categories');
+
+    const foodItems = await foodCollection.find({}).toArray();
+    const categories = await categoryCollection.find({}).toArray();
+
+    return { foodItems, categories };
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    throw err;
+  }
+}
+
+module.exports = connectDB;
