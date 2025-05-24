@@ -1,0 +1,22 @@
+{
+  "food_items": [
+    {
+      "CategoryName": "Biryani/Rice",
+      "name": "Chicken Biryani",
+      "img": "/Images/pizza.jpg",
+      "options": [{ "half": "120" }, { "full": "200" }],
+      "description": "Aromatic chicken biryani with spices"
+    },
+    {
+      "CategoryName": "Pizza",
+      "name": "Farmhouse Pizza",
+      "img": "",
+      "options": [{ "regular": "150" }, { "medium": "250" }],
+      "description": "Loaded with veggies and cheese"
+    }
+  ],
+  "Categories": [
+    { "CategoryName": "Biryani/Rice" },
+    { "CategoryName": "Pizza" }
+  ]
+}
