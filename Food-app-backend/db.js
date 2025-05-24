@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const data = require('./foodData.json');
 
-const mongoURI = process.env.MONGO_URI || 'mongodb+srv://batjivesh:hOQer40UkOJW3t2l@master-it-db.0g2fkt0.mongodb.net/?retryWrites=true&w=majority&appName=Master-it-DB';
+const mongoURI = process.env.MONGO_URI || '';
 
 async function connectDB() {
   try {
