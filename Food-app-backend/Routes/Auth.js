@@ -4,7 +4,8 @@ const Order = require("../models/Orders");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
-var jwt = require("jsonwebtoken");
+
+const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const fetch = require("../middleware/fetchdetails");
 const jwtSecret = "HaHa";
